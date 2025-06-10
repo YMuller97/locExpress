@@ -1,0 +1,49 @@
+services:
+    loc_express_db:
+        image: postgres:latest
+        container_name: loc_express_db
+        environment:
+            POSTGRES_DB: locexpress
+            POSTGRES_USER: locexpress
+            POSTGRES_PASSWORD: postgres
+        ports:
+            - 5460:5432
+        volumes:
+            - locexpress_db_vol:/var/lib/postgresql/data
+        networks:
+            - dotnet-network
+
+    # mailhog:
+    #     image: mailhog/mailhog:latest
+    #     container_name: mailhog
+    #     ports:
+            #- 1025:1025  # SMTP server port
+            #- 8025:8025  # Web UI port
+        #restart: unless-stopped
+        # networks:
+        #     - dotnet-network
+
+    loc_express_api: 
+        container_name: loc_express_api
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        ports: 
+            - 0.0.0.0:5212:8080
+        networks:
+            - dotnet-network
+        depends_on:
+            - loc_express_db
+        volumes:
+            - locexpress_api_vol:/App
+        
+
+networks:
+    dotnet-network:
+        driver: bridge
+
+volumes:
+    locexpress_db_vol:
+        name: "locexpress_db_vol"
+    locexpress_api_vol: 
+        name: "locexpress_api_vol"

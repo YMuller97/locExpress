@@ -7,7 +7,7 @@ services:
             POSTGRES_USER: locexpress
             POSTGRES_PASSWORD: postgres
         ports:
-            - 5460:5432
+            - 0.0.0.0:5460:5432
         volumes:
             - locexpress_db_vol:/var/lib/postgresql/data
         networks:
@@ -29,13 +29,15 @@ services:
             context: .
             dockerfile: Dockerfile
         ports: 
-            - 0.0.0.0:5212:8080
+            - 0.0.0.0:5000:5000
         networks:
             - dotnet-network
         depends_on:
             - loc_express_db
         volumes:
             - locexpress_api_vol:/App
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
         
 
 networks:

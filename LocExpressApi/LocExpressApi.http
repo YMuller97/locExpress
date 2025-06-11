@@ -1,4 +1,4 @@
-@LocExpressApi_HostAddress = http://0.0.0.0:8080
+@LocExpressApi_HostAddress = http://0.0.0.0:5000
 
 GET {{LocExpressApi_HostAddress}}/weatherforecast/
 Accept: application/json

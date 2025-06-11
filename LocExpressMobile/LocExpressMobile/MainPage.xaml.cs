@@ -29,9 +29,10 @@ namespace LocExpressMobile
             }
         }
 
-        protected async void Refresh()
+        protected async void Refresh(object sender, EventArgs e)
         {
             await _viewModel.InitializeAsync();
+            Console.WriteLine("click");
         } 
     }
 }

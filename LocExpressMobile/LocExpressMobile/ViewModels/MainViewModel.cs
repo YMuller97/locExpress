@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -55,7 +56,13 @@ namespace LocExpressMobile.ViewModels
         {
             var list = await _apiService.GetAllRentalAdsAsync();
             AdList = new ObservableCollection<RentalAd>(list);
+            foreach (var ad in list)
+            {
+                Console.WriteLine(ad.Title);
+            }
         }
+
+        //public event PropertyChangedEventHandler PropertyChanged;
 
     }
 }

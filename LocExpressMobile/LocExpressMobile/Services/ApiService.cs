@@ -38,7 +38,7 @@ namespace LocExpressMobile.Services
                 if(response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    RentalAds = JsonSerializer.Deserialize<ObservableCollection<RentalAd>>(content);
+                    RentalAds = JsonSerializer.Deserialize<ObservableCollection<RentalAd>>(content, _serializerOptions);
                 }
             }
             catch(Exception ex)
@@ -58,7 +58,7 @@ namespace LocExpressMobile.Services
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    ad = JsonSerializer.Deserialize<RentalAd>(content);
+                    ad = JsonSerializer.Deserialize<RentalAd>(content, _serializerOptions);
                 }
             }
             catch (Exception ex)

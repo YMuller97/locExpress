@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocExpressMobile.Views.RentalAdCard"
+             x:Name="RentalCard"
+             Padding="10">
+    <Frame CornerRadius="8"
+           BorderColor="#DDD"
+           BackgroundColor="White"
+           HasShadow="True"
+           Padding="8"
+           Margin="5">
+
+        <Grid RowSpacing="4" ColumnSpacing="6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <Label Text="{Binding Title}"
+                   FontSize="13"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   LineBreakMode="TailTruncation"
+                   MaxLines="1" />
+
+            <!-- City -->
+            <Label Grid.Row="1"
+                   Text="{Binding City, StringFormat='📍 {0}'}"
+                   FontSize="12"
+                   TextColor="DimGray" />
+
+            <!-- Price -->
+            <Label Grid.Row="2"
+                   FontSize="12"
+                   TextColor="DarkGreen">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="💰 " />
+                        <Span Text="{Binding Rent}" />
+                        <Span Text=" € + " />
+                        <Span Text="{Binding RentalCharges}" />
+                        <Span Text=" €" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <!-- Surface + pièces -->
+            <Label Grid.Row="3"
+                   Text="{Binding Surface, StringFormat='📐 {0} m²'}"
+                   FontSize="12" />
+
+            <!-- Description -->
+            <Label Grid.Row="4"
+                   Text="{Binding Description}"
+                   FontSize="11"
+                   TextColor="Gray"
+                   LineBreakMode="TailTruncation"
+                   MaxLines="2" />
+        </Grid>
+    </Frame>
+</ContentView>

@@ -3,16 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LocExpressMobile.MainPage"
              xmlns:viewmodel="clr-namespace:LocExpressMobile.ViewModels"
+             xmlns:views="clr-namespace:LocExpressMobile.Views"
              xmlns:models="clr-namespace:LocExpressMobile.Models"
              x:DataType="viewmodel:MainViewModel">
 
-    <Grid RowDefinitions="80, 50, Auto"
+    <Grid RowDefinitions="80"
           ColumnDefinitions=".75*, .25*"
           Padding="10"
           RowSpacing="10">
-
-        
-        
         <Entry Placeholder="Search"
                Text="{Binding input}"
                Grid.Row="1"/>
@@ -21,17 +19,33 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Clicked="Refresh"/>
-
-        <CollectionView Grid.Row="2" Grid.ColumnSpan="2"
-                        ItemsSource="{Binding AdList}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:RentalAd">
-                    <Label Text="{Binding Title}" TextColor="Black"></Label>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-                        
-
     </Grid>
+    <CollectionView ItemsSource="{Binding AdList}"
+                    Margin="10"
+                    SelectionMode="None"
+                    VerticalScrollBarVisibility="Always">
+        
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="2" />
+        </CollectionView.ItemsLayout>
+        
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid   Padding="10"
+                        RowSpacing="10">
 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".5*" />
+                        <ColumnDefinition Width=".5*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                    </Grid.RowDefinitions>
+                    
+                    <views:RentalAdCard/>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace LocExpressApi.Shared.Models
+namespace LocExpressMobile.Models
 {
     [PrimaryKey(nameof(UserId), nameof(RentalAdId))]
     [Table("user_favorites")]

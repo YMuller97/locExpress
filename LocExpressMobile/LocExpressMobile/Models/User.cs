@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LocExpressApi.Shared.Models
+namespace LocExpressMobile.Models
 {
     [Table("users")]
     public class User

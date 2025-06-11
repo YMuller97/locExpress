@@ -1,4 +1,4 @@
-﻿namespace LocExpressApi.Shared.Models
+﻿namespace LocExpressMobile.Models
 {
     public class Message
     {

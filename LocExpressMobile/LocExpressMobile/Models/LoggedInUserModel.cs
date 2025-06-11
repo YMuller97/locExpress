@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace LocExpressApi.Shared.Models
+namespace LocExpressMobile.Models
 {
     public record LoggedInUserModel(int Id, string Email, string Name)
     {

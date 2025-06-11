@@ -1,34 +1,37 @@
-﻿using LocExpressApi.Shared.Models;
+﻿using LocExpressMobile.Models;
+using LocExpressMobile.Services;
+using LocExpressMobile.ViewModels;
+using System.Windows.Input;
 
 namespace LocExpressMobile
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-        List<RentalAd> list = new List<RentalAd>();
 
-
-        public MainPage()
+        private readonly MainViewModel _viewModel;
+        public MainPage(MainViewModel vm)
         {
             InitializeComponent();
-
+            _viewModel = vm;
+            BindingContext = _viewModel;
         }
 
-
-        public async Task GetRentalAds()
+        protected override async void OnAppearing()
         {
-
+            base.OnAppearing();
+            try
+            {
+                await _viewModel.InitializeAsync();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error : {ex.Message}");
+            }
         }
-        //private void OnCounterClicked(object? sender, EventArgs e)
-        //{
-        //    count++;
 
-        //    if (count == 1)
-        //        CounterBtn.Text = $"Clicked {count} time";
-        //    else
-        //        CounterBtn.Text = $"Clicked {count} times";
-
-        //    SemanticScreenReader.Announce(CounterBtn.Text);
-        //}
+        protected async void Refresh()
+        {
+            await _viewModel.InitializeAsync();
+        } 
     }
 }

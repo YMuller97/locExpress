@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<MyDbContext>(options =>
-    options.UseNpgsql("Host=loc_express_db;Port=5432;Username=locexpress;Password=postgres;Database=locexpress"));
+    options.UseNpgsql("Host=localhost;Port=5460;Username=locexpress;Password=postgres;Database=locexpress"));
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

@@ -30,7 +30,7 @@ namespace LocExpressMobile.Services
 
         public async Task<ObservableCollection<RentalAd>> GetAllRentalAdsAsync()
         {
-            RentalAds = new ObservableCollection<RentalAd>();
+            var RentalAds = new ObservableCollection<RentalAd>();
             //Uri uri = new Uri(string.Format(Constants.RestUrl, string.Empty));
             try
             {

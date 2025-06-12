@@ -2,39 +2,28 @@
 using CommunityToolkit.Mvvm.Input;
 using LocExpressMobile.Models;
 using LocExpressMobile.Services;
-using System;
-using System.Collections.Generic;
+
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+
 
 namespace LocExpressMobile.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
         private readonly ApiService _apiService;
+        //public ObservableCollection<RentalAd> AdList { get; set; }
 
-        private ObservableCollection<RentalAd> _adList;
-        public ObservableCollection<RentalAd> AdList
+
+        private ObservableCollection<CardModel> adCardsList;
+        public ObservableCollection<CardModel> AdCardsList
         {
-            get => _adList;
-            set 
-            { 
-                _adList = value; 
-                OnPropertyChanged(); 
+            get => adCardsList;
+            set
+            {
+                adCardsList = value;
+                OnPropertyChanged();
             }
         }
-
-
-
-
-        //[ObservableProperty]
-        //List<RentalAd> ads;
 
         //[ObservableProperty, AllowNull]
         public string input;
@@ -43,22 +32,32 @@ namespace LocExpressMobile.ViewModels
 
         public MainViewModel()
         {
-            AdList = new();
+            AdCardsList = new();
             _apiService = new();
         }
-
-        //private async Task GetRentalAds()
-        //{
-            
-        //}
 
         public async Task InitializeAsync()
         {
             var list = await _apiService.GetAllRentalAdsAsync();
-            AdList = new ObservableCollection<RentalAd>(list);
+            //AdList = new ObservableCollection<RentalAd>(list);
             foreach (var ad in list)
             {
-                Console.WriteLine(ad.Title);
+                AdCardsList.Add(new CardModel
+                {
+                    Id = ad.Id,
+                    Title = ad.Title,
+                    City = ad.City,
+                    PostCode = ad.PostCode,
+                    Surface = ad.Surface,
+                    RoomsNumber = ad.RoomsNumber,
+                    BedroomsNumber = ad.BedroomsNumber,
+                    Rent = ad.Rent + ad.RentalCharges,
+                    Description = ad.Description,
+                    OwnerId = ad.OwnerId,
+                    TypeId = ad.TypeId,
+                    CreationDate = ad.CreationDate,
+                    EnergyCategoryId = ad.EnergyCategoryId,
+                });
             }
         }
 

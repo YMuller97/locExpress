@@ -13,7 +13,7 @@ namespace LocExpressApi.Shared.Models
         [Column("name")]
         public string? Name { get; set; }
 
-        [Column("FirstName")]
+        [Column("first_name")]
         public string? FirstName { get; set; }
 
         [Column("email")]

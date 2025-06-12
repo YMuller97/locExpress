@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LocExpressMobile.Views.RentalAdCard"
              x:Name="RentalCard"
-             Padding="10">
+             Padding="10"
+             HeightRequest="200"
+             WidthRequest="400">
     <Frame CornerRadius="8"
            BorderColor="#DDD"
            BackgroundColor="White"
@@ -28,30 +30,21 @@
                    LineBreakMode="TailTruncation"
                    MaxLines="1" />
 
-            <!-- City -->
+            <!-- City & Post code -->
             <Label Grid.Row="1"
-                   Text="{Binding City, StringFormat='📍 {0}'}"
+                   Text="{Binding PostCode, City, StringFormat='{0}'}"
                    FontSize="12"
-                   TextColor="DimGray" />
+                   TextColor="Blue" />
 
             <!-- Price -->
             <Label Grid.Row="2"
                    FontSize="12"
-                   TextColor="DarkGreen">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="💰 " />
-                        <Span Text="{Binding Rent}" />
-                        <Span Text=" € + " />
-                        <Span Text="{Binding RentalCharges}" />
-                        <Span Text=" €" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+                   TextColor="DarkGreen"
+                   Text="{Binding Rent, StringFormat='{0} €/mois'}" />
 
             <!-- Surface + pièces -->
             <Label Grid.Row="3"
-                   Text="{Binding Surface, StringFormat='📐 {0} m²'}"
+                   Text="{Binding Surface, StringFormat=' Surface : {0} m²'}"
                    FontSize="12" />
 
             <!-- Description -->

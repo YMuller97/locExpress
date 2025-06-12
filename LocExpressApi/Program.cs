@@ -31,5 +31,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapGroup("/api/ads").MapRentalAdsEndpoints();
+app.MapGroup("/api/users").MapUserEndpoints();
 
 app.Run();

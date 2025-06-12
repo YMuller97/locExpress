@@ -20,7 +20,7 @@ namespace LocExpressApi.Endpoints
             group.MapGet("/", async (MyDbContext context) =>
             {
                 List<RentalAd> list = await context.RentalAds.ToListAsync();
-                return list.Count == 0 ? Results.Ok(list) : Results.NotFound();
+                return list is not null ? Results.Ok(list) : Results.NotFound();
             });
 
 
@@ -184,6 +184,8 @@ namespace LocExpressApi.Endpoints
 
                 return Results.Ok("Rental ad deleted");
             });
+
+
 
 
             return group;
